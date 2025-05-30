@@ -5,7 +5,7 @@
 using namespace cv;
 
 int main() {
-    const char* imagePath = "D:\\Ceva\\An3 Pi2\\proiect1\\src\\images\\lines4.jpg";
+    const char* imagePath = "D:\\Ceva\\An3 Pi2\\proiect1\\src\\images\\lines14.jpg";
 
     Mat img = imread(imagePath, IMREAD_COLOR);
     if (img.empty()) {
@@ -21,14 +21,14 @@ int main() {
         gray = img.clone();
     }
 
-    // Extragem muchiile (filtru gradient + prag)
+    // Extragem muchiile
     Mat edges;
-    int gradThresh = 100;
+    int gradThresh = 75;
     detectEdges(gray, edges, gradThresh);
 
     // Transformata Hough + desenare linii peste grayscale
     Mat result;
-    int votesThresh = 150;  // prag minim voturi = linii suficient de lungi
+    int votesThresh = 120;
     Mat houghSpace = houghAndDraw(edges, gray, result, votesThresh);
 
     imshow("Grayscale",      gray);
